@@ -1,0 +1,26 @@
+//{DEFAULT}
+//{RED}
+//{LIGHTPURPLE}
+//{GREEN}
+//{LIME}
+//{LIGHTGREEN}
+//{LIGHTRED}
+//{GRAY}
+//{LIGHTOLIVE}
+//{OLIVE}
+//{PURPLE}
+//{LIGHTBLUE}
+//{BLUE}
+"Phrases"
+{
+	"player_connect"
+	{
+		"#format"	"{1:s}"
+		"ru"		"[{RED}+{DEFAULT}] {DEFAULT}Игрок {BLUE}{1} {DEFAULT}подключается к серверу."
+	}
+	"player_disconnect"
+	{
+		"#format"	"{1:N},{2:s}"
+		"ru"		"[{RED}-{DEFAULT}] {DEFAULT}Игрок {BLUE}{1} {DEFAULT}отключился от сервера. ({2})"
+	}
+}
