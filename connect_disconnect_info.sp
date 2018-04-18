@@ -6,12 +6,12 @@
 public Plugin myinfo =
 {
 	name = "Connect and Disconnect Info [CS:GO]",
-	author = "1mpulse & modified by madwayz",
+	author = "modified by madwayz",
 	description = "Заменяет стандартные сообщение при подкл./откл. игроков",
 	version = "1.0.0",
 	url = ""
 }
-public void OnPluginStart() 
+public void OnPluginStart()
 {
 	LoadTranslations("connect_disconnect_info.phrases");
 	HookEvent("player_disconnect", OnPlayerDisconnect, EventHookMode_Pre);
@@ -35,11 +35,12 @@ public void OnPlayerDisconnect(Event event, const char[] name, bool dontBroadcas
 	int iClient = GetClientOfUserId(event.GetInt("userid"));
 	if(!dontBroadcast) event.BroadcastDisabled = true;
 	event.GetString("reason", sReason, sizeof(sReason));
-	if(StrContains(sReason, "Disconnect") >= 0) sReason = "Отключился";
-	else if(StrContains(sReason, "Забанен админом:", false) >= 0 
-		|| StrContains(sReason, "Banned by administrator", false) >= 0 
-		|| StrContains(sReason, "You was banned by admin", false) >= 0
-		) sReason = "Забанен администратором";
+	if(StrContains(sReason, "Disconnect") >= 0) sReason = "По собственному желанию";
+	else if(
+			StrContains(sReason, "Забанен админом:", false) >= 0 ||
+			StrContains(sReason, "Banned by administrator", false) >= 0 ||
+			StrContains(sReason, "You was banned by admin", false) >= 0
+			) sReason = "Забанен администратором";
 	else if(StrContains(sReason, "Вы были кикнуты за AFK", false) >= 0) sReason = "AFK";
 	else if(StrContains(sReason, "timed out", false) >= 0) sReason = "Разорвалось соединение";
 	else if(StrContains(sReason, "No user logon", false) >= 0) sReason = "Пользователь не авторизован";
@@ -51,9 +52,11 @@ public void OnPlayerDisconnect(Event event, const char[] name, bool dontBroadcas
 	else if(StrContains(sReason, "Kicked by administrator", false) >= 0) sReason = "Кикнут администратором";
 	else if(StrContains(sReason, "Сервер перезапускается. Попробуйте", false) >= 0) sReason = "Сервер перезапускается";
 	else sReason = "Причина неизвестна";
-	
-	if((GetClientTeam(iClient) >= 0) && IsValidClient(iClient)) {
-		CGOPrintToChatAll("%t", "player_disconnect", iClient, sReason);
+
+	if(IsValidClient(iClient)) {
+		if(GetClientTeam(iClient) >= 0) {
+			CGOPrintToChatAll("%t", "player_disconnect", iClient, sReason);
+		}
 	}
 }
 
