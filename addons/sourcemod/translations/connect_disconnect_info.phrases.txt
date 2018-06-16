@@ -1,0 +1,51 @@
+//{DEFAULT}
+//{RED}
+//{LIGHTPURPLE}
+//{GREEN}
+//{LIME}
+//{LIGHTGREEN}
+//{LIGHTRED}
+//{GRAY}
+//{LIGHTOLIVE}
+//{OLIVE}
+//{PURPLE}
+//{LIGHTBLUE}
+//{BLUE}
+"Phrases"
+{
+	"player_team_t"
+	{
+		"#format"    "{1:N}"
+		"ru"        "[{RED}✶{DEFAULT}] {BLUE}{1} {DEFAULT}зашел за команду {OLIVE}Чеченской ОПГ"
+	}
+	
+	"player_team_ct"
+	{
+		"#format"    "{1:N}"
+		"ru"        "[{RED}✶{DEFAULT}] {BLUE}{1} {DEFAULT}зашел за команду {LIGHTBLUE}Донбасской полиции"
+	}
+	
+    "player_team_spec"
+    {
+		"#format"    "{1:N}"
+        "ru"        "[{RED}✶{DEFAULT}] {BLUE}{1} {DEFAULT}зашел в {PURPLE}наблюдатели"
+    }
+	
+	"player_connect"
+	{
+		"#format"	"{1:s}"
+		"ru"		"[{RED}+{DEFAULT}] {DEFAULT}Игрок {BLUE}{1} {DEFAULT}подключается к серверу."
+	}
+	
+	"player_disconnect"
+	{
+		"#format"	"{1:N},{2:s}"
+		"ru"		"[{RED}-{DEFAULT}] {DEFAULT}Игрок {BLUE}{1} {DEFAULT}отключился от сервера"
+	}
+	
+	"player_flyout"
+	{
+		"#format"	"{1:N},{2:s}"
+		"ru"		"[{RED}-{DEFAULT}] {DEFAULT}Игрок {BLUE}{1} {DEFAULT}вылетел сервера. ({2})"
+	}
+}
