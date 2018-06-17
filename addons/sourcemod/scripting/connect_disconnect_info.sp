@@ -38,7 +38,7 @@ public void Event_PlayerTeam(Event event, const char[] name, bool dontBroadcast)
 	if (iTeam == TERRORIST_TEAM) CGOPrintToChatAll("%t", "player_team_t", iClient);
 	else if (iTeam == COUNTER_TERRORIST_TEAM) CGOPrintToChatAll("%t", "player_team_ct", iClient);
 	else if (iTeam == SPECTATOR_TEAM) {
-		if(iClient && CheckAdminMenuFlag(iClient) && iRounds != 15)
+		if(iClient && !(GetUserAdmin(iClient) != INVALID_ADMIN_ID) && iRounds != 15)
 		{
 			CGOPrintToChatAll("%t", "player_team_spec", iClient, iClient);
 		}
@@ -52,7 +52,7 @@ public void OnPlayerConnect(Event event, const char[] name, bool dontBroadcast)
 	if(!dontBroadcast) event.BroadcastDisabled = true;
 	event.GetString("reason", sReason, sizeof(sReason));
 	event.GetString("name", sName, sizeof(sName));
-	if(iClient && CheckAdminMenuFlag(iClient))
+	if(iClient && !(GetUserAdmin(iClient) != INVALID_ADMIN_ID))
 	{
 		CGOPrintToChatAll("%t", "player_connect", iClient, iClient);
 	}
@@ -66,7 +66,7 @@ public void OnPlayerDisconnect(Event event, const char[] name, bool dontBroadcas
 	if(!dontBroadcast) event.BroadcastDisabled = true;
 	event.GetString("reason", sReason, sizeof(sReason));
 
-	if(IsValidClient(iClient) && GetClientTeam(iClient) >= 0 && iClient && CheckAdminMenuFlag(iClient)) {
+	if(IsValidClient(iClient) && GetClientTeam(iClient) >= 0 && iClient && !(GetUserAdmin(iClient) != INVALID_ADMIN_ID)) {
 		if(StrContains(sReason, "Disconnect") >= 0) CGOPrintToChatAll("%t", "player_disconnect", iClient, iClient);
 		else {
 			if (StrContains(sReason, "Забанен админом:", false) >= 0 ||
@@ -86,12 +86,6 @@ public void OnPlayerDisconnect(Event event, const char[] name, bool dontBroadcas
 			CGOPrintToChatAll("%t", "player_flyout", iClient, sReason);
 		}
 	}
-}
-
-bool CheckAdminMenuFlag(int iClient)
-{
-	if(GetUserFlagBits(iClient) != ADMFLAG_GENERIC) return false;
-	return true;
 }
 
 stock bool IsValidClient(int client)
