@@ -10,7 +10,7 @@ public Plugin myinfo =
 	name = "Announce Message",
 	author = "madwayz",
 	description = "Заменяет стандартные сообщение при подключении и отключении игроков",
-	version = "1.0.0",
+	version = "1.0.3",
 	url = ""
 }
 
